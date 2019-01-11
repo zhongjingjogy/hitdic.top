@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HitdicserviceService} from './hitdicservice.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'queue-panel';
+
+  constructor(private hitdicService: HitdicserviceService) {
+
+  }
 }
