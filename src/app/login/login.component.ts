@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HitdicserviceService } from '../hitdicservice.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import { HitdicserviceService } from '../hitdicservice.service';
 export class LoginComponent implements OnInit {
 
   token: "*********";
-  constructor(private hitdicservice: HitdicserviceService) { }
+  constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,6 +20,10 @@ export class LoginComponent implements OnInit {
     if(this.token) {
       this.hitdicservice.setToken(this.token);
     }
+  }
+
+  Register() {
+    this.router.navigate(['/register']);
   }
 
 }
