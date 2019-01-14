@@ -11,6 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
 import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
+import { ColsparserComponent } from './colsparser/colsparser.component';
 
 const modules = [
   MatButtonModule,
@@ -24,7 +25,8 @@ const modules = [
     AppComponent,
     LoginComponent,
     ProjectComponent,
-    TaskComponent
+    TaskComponent,
+    ColsparserComponent
   ],
   imports: [
     BrowserModule,
