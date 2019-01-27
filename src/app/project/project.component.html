@@ -1,7 +1,9 @@
+<button mat-button (click)="listTasks(hpro.hid)">New Project</button>
+<mat-divider></mat-divider>
 <div *ngIf="projects">
   <div *ngFor="let hpro of projects">
     <mat-card>
-      <mat-card-title>{{ hpro.hid }}<button mat-button (click)="listTasks(hpro.hid)">tasks</button></mat-card-title>
+      <mat-card-title>{{ hpro.title }}<button mat-button (click)="listTasks(hpro.hid)">tasks</button></mat-card-title>
       <mat-card-subtitle>
         <mat-chip-list>
           <mat-chip>{{hpro.user}}</mat-chip>
@@ -10,7 +12,7 @@
         </mat-chip-list>
       </mat-card-subtitle>
       <mat-card-content>
-        <h4>{{hpro.title}}</h4>
+        <h4>{{hpro.hid}}</h4>
         <p>{{hpro.note}}</p>
       </mat-card-content>
 

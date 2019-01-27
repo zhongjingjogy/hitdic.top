@@ -1,2 +1,16 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<router-outlet></router-outlet>
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;">
+    <mat-toolbar color="primary" class="fixed-header">
+        <span>HitDIC Web Panel</span>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <!-- <span>main page</span> -->
+    </mat-toolbar>
+
+    <div style="margin-top:70px;">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

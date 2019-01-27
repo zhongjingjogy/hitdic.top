@@ -4,6 +4,11 @@ import { Project } from '../project';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, of, empty } from 'rxjs';
+import {SelectionModel} from '@angular/cdk/collections';
+import { FileUploader } from 'ng2-file-upload';
+
+// const URL = '/api/';
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'app-task',
@@ -12,12 +17,25 @@ import { Observable, of, empty } from 'rxjs';
 })
 export class TaskComponent implements OnInit {
 
+  public uploader:FileUploader = new FileUploader({url: URL});
+  public hasBaseDropZoneOver:boolean = false;
+  public hasAnotherDropZoneOver:boolean = false;
+
+  public fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e:any):void {
+    this.hasAnotherDropZoneOver = e;
+  }
+
   projectid: string;
   tasks: any;
+  selection = new SelectionModel(true, []);
   constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
     private router: Router) { }
 
-  displayedColumns: string[] = ['tid', 'hid', 'type', 'status', 'createdat'];
+  displayedColumns: string[] = ['select', 'tid', 'hid', 'type', 'status', 'createdat'];
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
@@ -54,4 +72,18 @@ export class TaskComponent implements OnInit {
     window.open(link, '_blank');
   }
 
+  /*TODO: define class for the task */
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.tasks.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.tasks.data.forEach(row => this.selection.select(row));
+  }
 }

@@ -7,12 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HitdicserviceService } from './hitdicservice.service';
 import { LoginComponent } from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatBadgeModule, MatChipsModule, MatDividerModule, MatListModule, MatTableModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatBadgeModule, MatChipsModule, MatDividerModule, MatListModule, MatTableModule, MatProgressSpinnerModule, MatSidenavModule, MatTabsModule, MatExpansionModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
 import { ColsparserComponent } from './colsparser/colsparser.component';
 import { RegisterComponent } from './register/register.component';
+import { NewprojectComponent } from './newproject/newproject.component';
+import { EditprojectComponent } from './editproject/editproject.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 const modules = [
   MatButtonModule,
@@ -28,7 +31,9 @@ const modules = [
     ProjectComponent,
     TaskComponent,
     ColsparserComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewprojectComponent,
+    EditprojectComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,12 @@ const modules = [
     MatDividerModule,
     MatListModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    FileUploadModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -65,7 +75,11 @@ const modules = [
     MatDividerModule,
     MatListModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [
     HitdicserviceService

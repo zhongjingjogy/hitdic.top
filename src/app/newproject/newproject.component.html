@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-card>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="title" [(ngModel)]="title" name="title">
+
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Note" [(ngModel)]="note" name="note" matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=10></textarea>
+      </mat-form-field>
+      <button (click)="Create()" mat-button>Create</button>
+    </form>
+  </mat-card>
+</div>
+<mat-card>
+</mat-card>

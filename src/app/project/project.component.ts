@@ -9,6 +9,7 @@ import {Project} from '../project';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
+
 export class ProjectComponent implements OnInit {
   projects: Project[];
   constructor(
