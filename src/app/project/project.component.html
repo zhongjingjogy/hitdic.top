@@ -1,23 +1,38 @@
-<button mat-button (click)="listTasks(hpro.hid)">New Project</button>
-<mat-divider></mat-divider>
-<div *ngIf="projects">
-  <div *ngFor="let hpro of projects">
+<mat-tab-group>
+  <mat-tab label="Basic">
+    <div *ngIf="projects">
+      <div *ngFor="let hpro of projects">
+        <mat-card>
+          <mat-card-title>{{ hpro.title }}<button mat-button (click)="listTasks(hpro.hid)">tasks</button></mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip>{{hpro.user}}</mat-chip>
+              <mat-chip>{{hpro.timestamp}}</mat-chip>
+              <mat-chip>{{hpro.src}}</mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+          <mat-card-content>
+            <h4>{{hpro.hid}}</h4>
+            <p>{{hpro.note}}</p>
+          </mat-card-content>
+
+        </mat-card>
+        <mat-divider></mat-divider>
+      </div>
+
+    </div>
+  </mat-tab>
+  <mat-tab label="Create">
     <mat-card>
-      <mat-card-title>{{ hpro.title }}<button mat-button (click)="listTasks(hpro.hid)">tasks</button></mat-card-title>
-      <mat-card-subtitle>
-        <mat-chip-list>
-          <mat-chip>{{hpro.user}}</mat-chip>
-          <mat-chip>{{hpro.timestamp}}</mat-chip>
-          <mat-chip>{{hpro.src}}</mat-chip>
-        </mat-chip-list>
-      </mat-card-subtitle>
-      <mat-card-content>
-        <h4>{{hpro.hid}}</h4>
-        <p>{{hpro.note}}</p>
-      </mat-card-content>
-
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="title" [(ngModel)]="title" name="title">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Note" [(ngModel)]="note" name="note" matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=10></textarea>
+        </mat-form-field>
+        <button (click)="createProject()" mat-button>Create</button>
+      </form>
     </mat-card>
-    <mat-divider></mat-divider>
-  </div>
-
-</div>
+  </mat-tab>
+</mat-tab-group>

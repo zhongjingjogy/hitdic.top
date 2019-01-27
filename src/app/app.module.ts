@@ -11,11 +11,9 @@ import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
 import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
-import { ColsparserComponent } from './colsparser/colsparser.component';
 import { RegisterComponent } from './register/register.component';
-import { NewprojectComponent } from './newproject/newproject.component';
-import { EditprojectComponent } from './editproject/editproject.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { TasklistComponent } from './tasklist/tasklist.component';
 
 const modules = [
   MatButtonModule,
@@ -30,10 +28,8 @@ const modules = [
     LoginComponent,
     ProjectComponent,
     TaskComponent,
-    ColsparserComponent,
     RegisterComponent,
-    NewprojectComponent,
-    EditprojectComponent
+    TasklistComponent,
   ],
   imports: [
     BrowserModule,

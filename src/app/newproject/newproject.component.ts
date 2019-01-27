@@ -21,4 +21,12 @@ export class NewprojectComponent implements OnInit {
   ngOnInit() {
   }
 
+  Create() {
+    // TODO: 
+    alert("TODO: post a message to server, and get the id of project using this function.");
+  }
+
+  Cancel() {
+    this.router.navigate(['/projects']);
+  }
 }

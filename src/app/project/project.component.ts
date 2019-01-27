@@ -35,4 +35,9 @@ export class ProjectComponent implements OnInit {
   listTasks(hid: string) {
     this.router.navigate(['/project/' + hid]);
   }
+
+  createProject() {
+    // TODO: 
+    alert("TODO: post a message to server, and get the id of project using this function.");
+  }
 }
