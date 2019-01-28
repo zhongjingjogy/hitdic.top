@@ -1,0 +1,21 @@
+<mat-card>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="title" [(ngModel)]="title" name="title">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Note" [(ngModel)]="note" name="note" matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=10></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <p>NodeNumber</p><input matInput type="number" [(ngModel)]="nodenumber" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Method">
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="createTask()" mat-button>Create</button>
+  </form>
+</mat-card>

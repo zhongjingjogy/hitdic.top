@@ -36,8 +36,4 @@ export class ProjectComponent implements OnInit {
     this.router.navigate(['/project/' + hid]);
   }
 
-  createProject() {
-    // TODO: 
-    alert("TODO: post a message to server, and get the id of project using this function.");
-  }
 }

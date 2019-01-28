@@ -28,7 +28,6 @@ export class TaskComponent implements OnInit {
     this.hasAnotherDropZoneOver = e;
   }
 
-  nodenumber: number;
   projectid: string;
 
   constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
@@ -51,7 +50,4 @@ export class TaskComponent implements OnInit {
     this.router.navigate(['/projects']);
   }
 
-  Create() {
-    // TODO: collect infomation from form and post it to the server
-  }
 }

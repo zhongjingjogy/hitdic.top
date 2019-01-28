@@ -12,7 +12,8 @@ import { HitdicserviceService } from '../hitdicservice.service';
 export class NewprojectComponent implements OnInit {
 
   projectid: string;
-
+  title: string;
+  note: string;
   constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
     private router: Router) {
 
@@ -21,7 +22,7 @@ export class NewprojectComponent implements OnInit {
   ngOnInit() {
   }
 
-  Create() {
+  createProject() {
     // TODO: 
     alert("TODO: post a message to server, and get the id of project using this function.");
   }
