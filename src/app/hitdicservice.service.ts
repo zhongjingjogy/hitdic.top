@@ -48,6 +48,10 @@ export class HitdicserviceService {
         });
   }
 
+  getProject(hid: string) {
+    return this.http.get('http://193.112.75.169:8006/project/' + hid);
+  }
+
   getProjectTasks(hid: string) {
     return this.http.get('http://193.112.75.169:8006/tasks/' + hid);
   }
@@ -63,8 +67,7 @@ export class HitdicserviceService {
 
     this.http
         .post(
-            'http://http://193.112.75.169:8006/register', formData,
-            httpOptions)
+            'http://http://193.112.75.169:8006/register', formData, httpOptions)
         .subscribe((res) => {
           console.log(res);
         });

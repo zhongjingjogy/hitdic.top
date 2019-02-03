@@ -1,14 +1,14 @@
 <mat-tab-group>
   <mat-tab label="Basic">
-    <mat-card>
-      <mat-card-title>Mg-Al-Zn<button mat-button (click)="goProjects()">back to projects</button></mat-card-title>
+    <mat-card *ngIf="project">
+      <mat-card-title>{{project.title}}<button mat-button (click)="goProjects()">back to projects</button></mat-card-title>
       <mat-card-subtitle>
         <mat-chip-list>
           <mat-chip>{{projectid}}</mat-chip>
         </mat-chip-list>
       </mat-card-subtitle>
       <mat-card-content>
-        <p>Note: Empty</p>
+        <p>{{project.note}}</p>
       </mat-card-content>
     </mat-card>
       <app-tasklist></app-tasklist>
