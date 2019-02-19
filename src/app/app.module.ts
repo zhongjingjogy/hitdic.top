@@ -10,12 +10,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatBadgeModule, MatChipsModule, MatDividerModule, MatListModule, MatTableModule, MatProgressSpinnerModule, MatSidenavModule, MatTabsModule, MatExpansionModule, MatOptionModule, MatSelectModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './project/project.component';
-import { TaskComponent } from './task/task.component';
 import { RegisterComponent } from './register/register.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { NewprojectComponent } from './newproject/newproject.component';
-import { NewtaskComponent } from './newtask/newtask.component'
+import { NewtaskComponent } from './newtask/newtask.component';
+import { MessageComponent } from './message/message.component';
+import { ProjectlistComponent } from './projectlist/projectlist.component';
+import { UploadfileComponent } from './uploadfile/uploadfile.component';
+import { NavheaderComponent } from './navheader/navheader.component'
 
 const modules = [
   MatButtonModule,
@@ -29,11 +32,14 @@ const modules = [
     AppComponent,
     LoginComponent,
     ProjectComponent,
-    TaskComponent,
     RegisterComponent,
     TasklistComponent,
     NewprojectComponent,
-    NewtaskComponent
+    NewtaskComponent,
+    MessageComponent,
+    ProjectlistComponent,
+    UploadfileComponent,
+    NavheaderComponent
   ],
   imports: [
     BrowserModule,

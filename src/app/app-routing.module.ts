@@ -4,13 +4,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {ProjectComponent} from './project/project.component';
 import {RegisterComponent} from './register/register.component';
-import {TaskComponent} from './task/task.component';
+import {ProjectlistComponent} from "./projectlist/projectlist.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'projects', component: ProjectComponent},
-  {path: 'project/:hid', component: TaskComponent},
+  {path: 'projects', component: ProjectlistComponent},
+  {path: 'project/:projectid', component: ProjectComponent},
   {path: 'register', component: RegisterComponent}
 ];
 

@@ -1,12 +1,18 @@
 <mat-card>
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" [(ngModel)]="email" name="email">
-      
+      <input matInput required type="text" placeholder="Usename" [(ngModel)]="username" name="username">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Note" [(ngModel)]="note" name="note"></textarea>
+      <input matInput required type="password" placeholder="Password" [(ngModel)]="password" name="password">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput required type="password" placeholder="ConfirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput required type="email" placeholder="Email" [(ngModel)]="email" name="email">
     </mat-form-field>
     <button (click)="Register()" mat-button>Registering</button>
   </form>
 </mat-card>
+<app-message></app-message>

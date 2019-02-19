@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="fixed-header">
+  <span>HitDIC Platform</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <span *ngIf="userService.user.username; else elseBlock">
+    {{userService.user.username}}
+  </span>
+  <span *ngIf="userService.user.username">
+    <button mat-button color="warn" (click)="userService.Logout()" ><mat-icon>logout</mat-icon></button>
+  </span>
+</mat-toolbar>
+
+<ng-template #elseBlock>
+  <a mat-button routerLink="/login">Login</a>
+</ng-template>

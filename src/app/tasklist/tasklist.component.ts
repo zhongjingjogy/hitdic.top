@@ -4,8 +4,11 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {empty, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
-import {HitdicserviceService} from '../hitdicservice.service';
 import {Project} from '../project';
+import {ProjectService} from '../project.service';
+import {Task} from '../task';
+import {TaskService} from '../task.service';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-tasklist',
@@ -14,26 +17,39 @@ import {Project} from '../project';
 })
 export class TasklistComponent implements OnInit {
   projectid: string;
-  tasks: any;
+  tasks: Task[];
   selection = new SelectionModel(true, []);
   constructor(
-      private hitdicservice: HitdicserviceService,
-      private route: ActivatedRoute, private router: Router) {}
+      private userService: UserService, private projectService: ProjectService,
+      private taskService: TaskService, private route: ActivatedRoute,
+      private router: Router) {}
 
   displayedColumns: string[] =
-      ['select', 'tid', 'hid', 'type', 'status', 'createdat'];
+      ['select', 'projectid', 'taskid', 'method', 'status', 'createdat'];
+
   ngOnInit() {
     this.route.paramMap
-        .pipe(switchMap((params: ParamMap) => of(params.get('hid'))))
+        .pipe(switchMap((params: ParamMap) => of(params.get('projectid'))))
         .subscribe((d) => {
           this.projectid = d;
-          console.log(this.projectid);
-          this.hitdicservice.getProjectTasks(this.projectid)
-              .subscribe((res) => {
-                this.tasks = res['tasks'];
-                console.log(this.tasks);
-              });
+
+          if (!this.userService.status == true) {
+            let promise = this.userService.LoadSession();
+            promise.then(status => {
+              if (status == true) {
+                this.Refresh(this.projectid);
+              } else {
+                this.router.navigate(['/login']);
+              }
+            })
+          } else {
+            this.Refresh(this.projectid);
+          }
         });
+  }
+
+  Refresh(projectid: string) {
+    this.taskService.getTasks(this.projectid).then(tasks => this.tasks = tasks);
   }
 
   downloadTask(tid: string) {
@@ -53,7 +69,7 @@ export class TasklistComponent implements OnInit {
    */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.tasks.data.length;
+    const numRows = this.tasks.length;
     return numSelected === numRows;
   }
 
@@ -63,6 +79,6 @@ export class TasklistComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
-        this.tasks.data.forEach(row => this.selection.select(row));
+        this.tasks.forEach(row => this.selection.select(row));
   }
 }

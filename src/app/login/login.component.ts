@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HitdicserviceService } from '../hitdicservice.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,22 +9,31 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  username: string;
+  password: string;
 
-  token: "*********";
-  constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
-    private router: Router) { }
+  constructor(
+      private userService: UserService, private route: ActivatedRoute,
+      private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   Login() {
-    if(this.token) {
-      this.hitdicservice.setToken(this.token);
+    if (this.username && this.password) {
+      let promise = this.userService.Login(this.username, this.password);
+      promise.then((res) => {this.Redirect(res)});
     }
   }
 
+  Redirect(status: boolean) {
+    console.log("Calling redirect!");
+    if (status == true) {
+      this.router.navigate(['/projects']);
+    } else {
+      window.location.reload();
+    }
+  }
   Register() {
     this.router.navigate(['/register']);
   }
-
 }

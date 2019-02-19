@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { HitdicserviceService } from '../hitdicservice.service';
-import { Alert } from 'selenium-webdriver';
+import {Component, OnInit} from '@angular/core';
+
+import {MessageService} from '../message.service';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,20 +9,21 @@ import { Alert } from 'selenium-webdriver';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  username: string;
+  password: string;
+  confirmPassword: string;
   email: string;
-  note: string;
-  constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
-    private router: Router) { }
+
+  constructor(
+      private userService: UserService,
+      private messageService: MessageService) {}
 
   ngOnInit() {
+    this.messageService.clear();
   }
 
   Register() {
-    if(this.email && this.note) {
-      this.hitdicservice.register(this.email, this.note);
-    } else {
-      alert("Empty information, please fill in it.");
-    }
+    this.userService.Register(
+        this.username, this.password, this.confirmPassword, this.email);
   }
 }

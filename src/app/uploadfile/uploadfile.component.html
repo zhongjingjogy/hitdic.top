@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title>
+    Upload project file (Only the latest version will be stored.)
+  </mat-card-title>
+  <mat-card-content>
+    <div *ngIf="projectid">
+      <div *ngIf="uploaded == true; else elseBlock">
+        History version exists.
+      </div>
+      <ng-template #elseBlock>
+        No History version is available.
+      </ng-template>
+    </div>
+    <input type="file" #file (change)="uploadFileOnChange(file.files)" accept="application/x-tar" />
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <div *ngIf="fileService.file">
+    <button (click)="Upload()">Upload</button>
+    <li>Name: {{fileService.file.name}}</li>
+    <li>Size: {{fileService.file.size/1024 | number:'.2'}} KB</li>
+    <li>Type: {{fileService.file.type}}</li>
+  </div>
+</mat-card>
+<app-message></app-message>

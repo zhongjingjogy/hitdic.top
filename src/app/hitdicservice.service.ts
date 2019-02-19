@@ -7,6 +7,7 @@ import {Project} from './project';
 
 @Injectable({providedIn: 'root'})
 export class HitdicserviceService {
+  username: string;
   token: string;
   status: boolean;
   projects: Project[];

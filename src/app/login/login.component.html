@@ -1,8 +1,11 @@
 <mat-card>
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput required type="password" placeholder="Password" [(ngModel)]="token" name="password">
+      <input matInput required type="text" placeholder="Usename" [(ngModel)]="username" name="username">
     </mat-form-field>
-    <button (click)="Login()" mat-button>Login</button> <button (click)="Register()" mat-button>Register</button>
+    <mat-form-field class="example-full-width">
+      <input matInput required type="password" placeholder="Password" [(ngModel)]="password" name="password">
+    </mat-form-field>
+    <button (click)="Login()" mat-button>Login</button><button (click)="Register()" mat-button>Register</button>
   </form>
 </mat-card>

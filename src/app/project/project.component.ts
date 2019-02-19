@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {empty, Observable, of} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
 import {HitdicserviceService} from '../hitdicservice.service';
+import {MessageService} from '../message.service';
 import {Project} from '../project';
+import {ProjectService} from '../project.service';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-project',
@@ -11,29 +16,28 @@ import {Project} from '../project';
 })
 
 export class ProjectComponent implements OnInit {
-  projects: Project[];
+  projectid: string;
+  project: Project;
+
   constructor(
-      private hitdicservice: HitdicserviceService,
-      private route: ActivatedRoute, private router: Router) {
+      private userService: UserService, private messageService: MessageService,
+      private projectService: ProjectService, private route: ActivatedRoute,
+      private router: Router) {
     // console.log("in project constructor");
   }
 
   ngOnInit() {
-    // console.log("in project OnInit");
-    if (!this.hitdicservice.status) {
-      this.router.navigate(['/login']);
-    }
-
-    this.projects = this.hitdicservice.projects;
-    if (!this.projects) {
-      console.log(this.projects);
-      console.log(
-          'Fail to retreive the project information, please login again!');
-    }
+    this.messageService.set('');
+    this.route.paramMap
+        .pipe(switchMap((params: ParamMap) => of(params.get('projectid'))))
+        .subscribe((d) => {
+          this.projectid = d;
+          this.Refresh(this.projectid);
+        });
   }
 
-  listTasks(hid: string) {
-    this.router.navigate(['/project/' + hid]);
+  Refresh(projectid: string) {
+    this.projectService.getProject(projectid).then(
+        project => this.project = project);
   }
-
 }

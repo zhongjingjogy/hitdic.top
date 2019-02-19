@@ -6,6 +6,7 @@
     <mat-form-field class="example-full-width">
       <textarea matInput placeholder="Note" [(ngModel)]="note" name="note" matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=10></textarea>
     </mat-form-field>
-    <button (click)="createProject()" mat-button>Create</button>
+    <button (click)="CreateProject()" mat-button>Create</button>
   </form>
 </mat-card>
+<app-message></app-message>

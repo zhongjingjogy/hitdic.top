@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable, of, empty } from 'rxjs';
-import { HitdicserviceService } from '../hitdicservice.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {empty, Observable, of} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+
+import {ProjectService} from '../project.service';
 
 @Component({
   selector: 'app-newproject',
@@ -10,21 +11,29 @@ import { HitdicserviceService } from '../hitdicservice.service';
   styleUrls: ['./newproject.component.css']
 })
 export class NewprojectComponent implements OnInit {
-
+  status: boolean;
   projectid: string;
   title: string;
   note: string;
-  constructor(private hitdicservice: HitdicserviceService, private route: ActivatedRoute,
-    private router: Router) {
 
-   }
+  constructor(
+      private projectService: ProjectService, private route: ActivatedRoute,
+      private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  createProject() {
-    // TODO: 
-    alert("TODO: post a message to server, and get the id of project using this function.");
+  CreateProject() {
+    let promise = this.projectService.CreateProject(this.title, this.note);
+    promise.then(status => {
+      this.status = status;
+      if (this.status) {
+        window.location.reload();
+        this.title = "";
+        this.note = "";
+      } else {
+        alert('Fail to create the project');
+      }
+    });
   }
 
   Cancel() {

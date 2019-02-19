@@ -1,0 +1,26 @@
+<mat-tab-group>
+  <mat-tab label="Basic">
+    <div *ngIf="projects">
+      <div *ngFor="let project of projects">
+        <mat-card>
+          <mat-card-title>{{ project.title }}<button mat-button (click)="ListTasks(project.projectid)">tasks</button></mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip>{{project.timestamp}}</mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+          <mat-card-content>
+            <h4>{{project.projectid}}</h4>
+            <p>{{project.note}}</p>
+          </mat-card-content>
+
+        </mat-card>
+        <mat-divider></mat-divider>
+      </div>
+
+    </div>
+  </mat-tab>
+  <mat-tab label="Create">
+    <app-newproject></app-newproject>
+  </mat-tab>
+</mat-tab-group>
