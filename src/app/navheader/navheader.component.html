@@ -8,7 +8,7 @@
     {{userService.user.username}}
   </span>
   <span *ngIf="userService.user.username">
-    <button mat-button color="warn" (click)="userService.Logout()" ><mat-icon>logout</mat-icon></button>
+    <button mat-button (click)="userService.Logout()" ><mat-icon>logout</mat-icon></button>
   </span>
 </mat-toolbar>
 

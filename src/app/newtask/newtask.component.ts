@@ -28,7 +28,7 @@ export class NewtaskComponent implements OnInit {
     { value: 'ga', viewValue: 'GA'}
   ];
 
-  constructor(private userService: UserService, private messageService: MessageService, private taskService: TaskService, public projectService: ProjectService, private route: ActivatedRoute,
+  constructor(public userService: UserService, private messageService: MessageService, private taskService: TaskService, public projectService: ProjectService, private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {

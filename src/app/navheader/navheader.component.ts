@@ -10,7 +10,7 @@ import {UserService} from '../user.service';
 })
 export class NavheaderComponent implements OnInit {
   constructor(
-      private userService: UserService, private route: ActivatedRoute,
+      public userService: UserService, private route: ActivatedRoute,
       private router: Router) {}
 
   ngOnInit() {

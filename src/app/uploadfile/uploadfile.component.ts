@@ -17,7 +17,7 @@ export class UploadfileComponent implements OnInit {
   uploaded: boolean;
 
   constructor(
-      private messageService: MessageService, private fileService: FileService,
+      private messageService: MessageService, public fileService: FileService,
       private projectService: ProjectService, private route: ActivatedRoute,
       private router: Router) {}
 
@@ -40,6 +40,7 @@ export class UploadfileComponent implements OnInit {
     let promise = this.fileService.Upload(this.projectid);
     promise.then(status => {
       if (status == true) {
+        window.location.reload();
       }
     })
   }

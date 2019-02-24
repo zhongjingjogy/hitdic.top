@@ -1,4 +1,4 @@
-const WEB_URL: string = 'http://127.0.0.1:8089';
+const WEB_URL: string = 'http://193.112.75.169:8089';
 
 export const URL_gettoken: string = WEB_URL + '/gettoken'
 export const URL_getprojects: string = WEB_URL + '/getprojects'

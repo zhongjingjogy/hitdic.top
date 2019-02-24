@@ -49,7 +49,7 @@ export class TasklistComponent implements OnInit {
   }
 
   Refresh(projectid: string) {
-    this.taskService.getTasks(this.projectid).then(tasks => this.tasks = tasks);
+    this.taskService.getTasks(this.projectid).then(tasks => {this.tasks = tasks;console.log(this.tasks);});
   }
 
   downloadTask(tid: string) {
