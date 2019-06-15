@@ -5,7 +5,7 @@ import {Observable, of} from 'rxjs';
 
 import {MessageService} from './message.service';
 import {Project} from './project';
-import {URL_createproject, URL_getproject, URL_getprojects, URL_isreadyprojectfile} from './urls';
+import {URL_createproject, URL_deleteproject, URL_getproject, URL_getprojects, URL_isreadyprojectfile} from './urls';
 import {User} from './user';
 import {UserService} from './user.service';
 
@@ -82,16 +82,6 @@ export class ProjectService {
           });
     });
 
-    // this.http.post(URL_getproject, {'projectid': projectId}, httpOptions)
-    //     .subscribe((response) => {
-    //       this.status = response['status'];
-    //       if (this.status == true) {
-    //         return of(response['project']);
-    //       } else {
-    //         this.messageService.set(response['msg']);
-    //       }
-    //     });
-
     return promise;
   }
 
@@ -121,21 +111,29 @@ export class ProjectService {
           });
     });
 
-    // this.http
-    //     .post(
-    //         URL_getprojects, {
-    //           'username': this.userService.user.username,
-    //           'token': this.userService.user.token
-    //         },
-    //         httpOptions)
-    //     .subscribe((response) => {
-    //       this.status = response['status'];
-    //       if (this.status == true) {
-    //         return of(response['projects']);
-    //       } else {
-    //         this.messageService.set(response['msg']);
-    //       }
-    //     });
+    return promise;
+  }
+
+  deleteProject(username: string, token: string, projectid: string) {
+    if (!projectid) {
+      this.messageService.set('Invalid project token');
+      return;
+    }
+
+    let promise = new Promise<Project>((resolve, reject) => {
+      this.http.post(URL_deleteproject, {username: username, token: token, projectid: projectid}, httpOptions)
+          .toPromise()
+          .then((response) => {
+            this.status = response['status'];
+            if (this.status == true) {
+              this.messageService.set(
+                  'Successfully delete the project: ' + projectid);
+            } else {
+              this.messageService.set(response['msg']);
+            }
+            resolve(response['projectid']);
+          });
+    });
 
     return promise;
   }

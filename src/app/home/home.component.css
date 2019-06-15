@@ -1,0 +1,28 @@
+.heading-section{
+    text-align: center;
+  }
+  
+  .heading-section h1{
+    font-size: 58px;
+  }
+  
+  .heading-section h2{
+    margin-top: 10px;
+  }
+  
+  .heading-button-left{
+    min-width: 144px;
+    max-width: 100%;
+  }
+  
+  .heading-button-right{
+    margin-left: 10px;
+  }
+
+  .image{
+    /* height:40em; 
+    background-size:cover;
+    width:auto;
+    background-image:url('../../assets/colorfulgradient.jpg');
+    background-position:50% 50%; */
+  }

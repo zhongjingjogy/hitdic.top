@@ -3,7 +3,7 @@
     <div *ngIf="projects">
       <div *ngFor="let project of projects">
         <mat-card>
-          <mat-card-title>{{ project.title }}<button mat-button (click)="ListTasks(project.projectid)">tasks</button></mat-card-title>
+          <mat-card-title>{{ project.title }}<button mat-button (click)="DeleteProject(project.projectid)">delete</button><button mat-button (click)="ListTasks(project.projectid)">tasks</button></mat-card-title>
           <mat-card-subtitle>
             <mat-chip-list>
               <mat-chip>{{project.timestamp}}</mat-chip>

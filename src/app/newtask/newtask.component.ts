@@ -20,12 +20,21 @@ export class NewtaskComponent implements OnInit {
   cores: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   corenumber: number = 2;
   projectid: string;
+  server: string;
 
   methods = [
     { value: 'mcmc', viewValue: 'MCMC' },
-    { value: 'varselaic', viewValue: 'VarSelAIC' },
-    { value: 'varsell2norm', viewValue: 'VarSelL2NORM' },
-    { value: 'ga', viewValue: 'GA'}
+    { value: 'aic', viewValue: 'AIC' },
+    { value: 'l2norm', viewValue: 'L2NORM' },
+    { value: 'ga', viewValue: 'GA'},
+    { value: 'l1norm', viewValue: 'L1NORM'},
+    { value: 'bic', viewValue: 'BIC'}
+  ];
+
+  servers = [
+    { value: 'zhang', viewValue: 'zhang' },
+    { value: 'tang', viewValue: 'tang' },
+    { value: 'zhou', viewValue: 'zhou' },
   ];
 
   constructor(public userService: UserService, private messageService: MessageService, private taskService: TaskService, public projectService: ProjectService, private route: ActivatedRoute,
@@ -41,6 +50,6 @@ export class NewtaskComponent implements OnInit {
   }
 
   CreateTask() {
-    this.taskService.CreateTask(this.projectid, this.title, this.note, this.method, this.corenumber);
+    this.taskService.CreateTask(this.projectid, this.title, this.note, this.method, this.corenumber, this.server);
   }
 }

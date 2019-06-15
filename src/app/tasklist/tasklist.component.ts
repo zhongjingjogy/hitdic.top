@@ -1,9 +1,12 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {resolve} from 'q';
 import {empty, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
+import {ConfirmdialogComponent, DialogData} from '../confirmdialog/confirmdialog.component';
 import {Project} from '../project';
 import {ProjectService} from '../project.service';
 import {Task} from '../task';
@@ -18,11 +21,12 @@ import {UserService} from '../user.service';
 export class TasklistComponent implements OnInit {
   projectid: string;
   tasks: Task[];
+  isableDeleteTask: boolean = true;
   selection = new SelectionModel(true, []);
   constructor(
       private userService: UserService, private projectService: ProjectService,
       private taskService: TaskService, private route: ActivatedRoute,
-      private router: Router) {}
+      private router: Router, public dialog: MatDialog) {}
 
   displayedColumns: string[] =
       ['select', 'projectid', 'taskid', 'method', 'status', 'createdat'];
@@ -49,7 +53,10 @@ export class TasklistComponent implements OnInit {
   }
 
   Refresh(projectid: string) {
-    this.taskService.getTasks(this.projectid).then(tasks => {this.tasks = tasks;console.log(this.tasks);});
+    this.taskService.getTasks(this.projectid).then(tasks => {
+      this.tasks = tasks;
+      console.log(this.tasks);
+    });
   }
 
   downloadTask(tid: string) {
@@ -58,12 +65,13 @@ export class TasklistComponent implements OnInit {
   }
 
   showTask(tid: string) {
-    let link = 'http://193.112.75.169:8007/' + tid + '/' +
-        '.report';
+    // let link = 'http://193.112.75.169:8007/' + tid + '/' +
+    //     '.report';
+    let link = 'http://result.hitdic.com/#/result/' + tid;
     window.open(link, '_blank');
   }
 
-  /*The following function is used for uploading files*/
+  /*The following function is used for uploading filenngs*/
   /**
    * Whether the number of selected elements matches the total number of rows.
    */
@@ -80,5 +88,50 @@ export class TasklistComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.tasks.forEach(row => this.selection.select(row));
+  }
+
+  DeleteTask(taskid: string) {
+    let promise = new Promise<boolean>((resolve, reject) => {
+      const dialogRef = this.dialog.open(ConfirmdialogComponent, {
+        width: '60%',
+        data:
+            {choice: true, msg: 'You are going to DELETE a task: ' + taskid}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        // this.choice = true;
+        console.log(result);
+        if (result) {
+          this.taskService.DeleteTask(
+              this.userService.user.username, this.userService.user.token,
+              taskid);
+          resolve(result);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+    return promise;
+  }
+
+  DeleteTasks() {
+    this.isableDeleteTask = false;
+    // console.log(this.selection);
+    let promises = [];
+    this.tasks.forEach(row => {
+      if (this.selection.isSelected(row)) {
+        console.log(row);
+        let apromise = this.DeleteTask(row.taskid);
+        promises.push(apromise);
+      }
+      // this.selection.select(row);
+    });
+    Promise.all(promises).then(
+      status => {
+        window.location.reload();
+      }
+    );
+
+    // window.location.reload();
   }
 }

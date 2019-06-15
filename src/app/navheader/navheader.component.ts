@@ -20,7 +20,7 @@ export class NavheaderComponent implements OnInit {
         if (status == true) {
           // window.location.reload();
         } else {
-          this.router.navigate(['/login']);
+          // this.router.navigate(['/login']);
         }
       })
     } else {

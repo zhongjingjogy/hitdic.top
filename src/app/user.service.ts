@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 
 import {MessageService} from './message.service';
-import {URL_gettoken, URL_hasusepermission, URL_register} from './urls';
+import {URL_changeusepermission, URL_gettoken, URL_getuserlist, URL_hasusepermission, URL_register} from './urls';
 import {User} from './user';
 
 const httpOptions = {
@@ -46,6 +46,7 @@ export class UserService {
           this.user.use = currentUser.use;
           this.status = true;
           console.log('use permission in load session: ', this.user.use);
+          console.log("token in load session: " + this.user.token);
           resolve(true);
         } catch {
           resolve(false);
@@ -88,22 +89,6 @@ export class UserService {
     }
     this.user.username = username;
     this.user.use = false;
-    // this.http
-    //     .post(
-    //         URL_gettoken, {username: username, password: password},
-    //         httpOptions)
-    //     .subscribe((response) => {
-    //       this.status = response['status'];
-    //       console.log('user is get in login');
-    //       console.log(response);
-    //       if (this.status == false) {
-    //         this.messageService.set(response['msg']);
-    //       } else {
-    //         this.user.token = response['token'];
-    //         console.log(this.user.token);
-    //         this.CheckUsePermission(this.user.username, this.user.token);
-    //       }
-    //     });
 
     let promise = new Promise<boolean>((resolve, reject) => {
       this.http
@@ -155,5 +140,48 @@ export class UserService {
             this.router.navigate(['/login']);
           }
         });
+  }
+
+  UserList(username: string, token: string) {
+    if (!(username && token)) {
+      this.messageService.set('Invalid login information');
+      return;
+    }
+
+    let promise = new Promise<User[]>((resolve, reject) => {
+      this.http
+          .post(URL_getuserlist, {root: username, token: token}, httpOptions)
+          .toPromise()
+          .then((response) => {
+            this.status = response['status'];
+            if (this.status == false) {
+              this.messageService.set(response['msg']);
+            } else {
+              this.user.token = response['token'];
+            }
+            console.log(response['users']);
+            resolve(response['users']);
+          });
+    });
+
+    return promise;
+  }
+
+  ChangeUsePermission(root: string, token: string, userid: number) {
+    // console.log("root user in change use permission: ", root, token);
+    let promise = new Promise<User[]>((resolve, reject) => {
+      this.http
+          .post(
+              URL_changeusepermission,
+              {root: root, token: token, id: userid}, httpOptions)
+          .subscribe((response) => {
+            this.status = response['status'];
+            if (this.status == false) {
+              this.messageService.set(response['msg']);
+            }
+            console.log(response);
+          });
+    });
+    return promise;
   }
 }

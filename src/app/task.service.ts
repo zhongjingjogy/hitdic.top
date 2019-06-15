@@ -6,7 +6,7 @@ import {Observable, of} from 'rxjs';
 import {MessageService} from './message.service';
 import {Project} from './project';
 import {Task} from './task';
-import {URL_createtask, URL_gettask, URL_gettasks} from './urls';
+import {URL_createtask, URL_deletetask, URL_gettask, URL_gettasks} from './urls';
 import {User} from './user';
 import {UserService} from './user.service';
 
@@ -27,7 +27,7 @@ export class TaskService {
 
   CreateTask(
       projectid: string, title: string, note: string, method: string,
-      corenumber: number) {
+      corenumber: number, server: string) {
     if (!(title && note && method && corenumber)) {
       this.messageService.set('Invalid Project information');
       return;
@@ -40,7 +40,8 @@ export class TaskService {
               title: title,
               note: note,
               method: method,
-              corenumber: corenumber
+              corenumber: corenumber,
+              server: server
             },
             httpOptions)
         .subscribe((response) => {
@@ -52,6 +53,30 @@ export class TaskService {
             this.messageService.set(response['msg']);
           }
         });
+  }
+
+  DeleteTask(username: string, token: string, taskid: string) {
+    if (!taskid) {
+      this.messageService.set('Invalid project token');
+      return;
+    }
+
+    let promise = new Promise<Project>((resolve, reject) => {
+      this.http.post(URL_deletetask, {username: username, token: token, taskid: taskid}, httpOptions)
+          .toPromise()
+          .then((response) => {
+            this.status = response['status'];
+            if (this.status == true) {
+              this.messageService.set(
+                  'Successfully delete the task: ' + taskid);
+            } else {
+              this.messageService.set(response['msg']);
+            }
+            resolve(response['taskid']);
+          });
+    });
+
+    return promise;
   }
 
   getTask(taskId: string): Observable<Task> {

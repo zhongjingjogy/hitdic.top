@@ -5,13 +5,17 @@ import {LoginComponent} from './login/login.component';
 import {ProjectComponent} from './project/project.component';
 import {RegisterComponent} from './register/register.component';
 import {ProjectlistComponent} from "./projectlist/projectlist.component";
+import {HomeComponent} from "./home/home.component";
+import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'projects', component: ProjectlistComponent},
   {path: 'project/:projectid', component: ProjectComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'admin', component: AdminComponent},
 ];
 
 

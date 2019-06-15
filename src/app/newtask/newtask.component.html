@@ -16,7 +16,14 @@
         </mat-select>
       </mat-form-field >
       <mat-form-field class="example-full-width">
-        <mat-select placeholder="Core" [(ngModel)]="core" name="core">
+        <mat-select placeholder="Server" [(ngModel)]="server" name="server">
+          <mat-option *ngFor="let t of servers" [value]="t.value" name="server">
+            {{t.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="CoreNumber" [(ngModel)]="corenumber" name="corenumber">
           <mat-option *ngFor="let c of cores" [value]='c'>{{c || 'Select'}}</mat-option>
         </mat-select>
       </mat-form-field>
