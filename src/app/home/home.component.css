@@ -1,28 +1,88 @@
-.heading-section{
-    text-align: center;
-  }
-  
-  .heading-section h1{
-    font-size: 58px;
-  }
-  
-  .heading-section h2{
-    margin-top: 10px;
-  }
-  
-  .heading-button-left{
-    min-width: 144px;
-    max-width: 100%;
-  }
-  
-  .heading-button-right{
-    margin-left: 10px;
-  }
+.heading-section {
+  text-align: center;
+}
 
-  .image{
-    /* height:40em; 
+.heading-section h1 {
+  font-size: 58px;
+}
+
+.heading-section h2 {
+  margin-top: 10px;
+}
+
+.heading-button-left {
+  min-width: 144px;
+  max-width: 100%;
+}
+
+.heading-button-right {
+  margin-left: 10px;
+}
+
+.image {
+    background-repeat: repeat; 
     background-size:cover;
     width:auto;
     background-image:url('../../assets/colorfulgradient.jpg');
-    background-position:50% 50%; */
+    background-position:50% 50%;
+}
+
+.mycontainer {
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items .item {
+  flex: 1 0 25%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (min-width: 410px) {
+  .items .item {
+    max-width: calc(50% - 10px);
   }
+}
+
+@media (min-width: 620px) {
+  .items .item {
+    max-width: calc(33.33333% - 10px);
+  }
+}
+
+@media (min-width: 830px) {
+  .items .item {
+    max-width: calc(25% - 10px);
+  }
+}
+
+
+.items .stepitem {
+  flex: 1 0 25%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (min-width: 410px) {
+  .items .stepitem {
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 620px) {
+  .items .stepitem {
+    max-width: calc(33.33333% - 10px);
+  }
+}
+
+@media (min-width: 830px) {
+  .items .stepitem {
+    max-width: calc(33.33333% - 10px);
+  }
+}
