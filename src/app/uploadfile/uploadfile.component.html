@@ -1,9 +1,15 @@
 <mat-card>
   <mat-card-title>
-    Upload project file (Only the latest version will be stored.)
+    <h5>Upload HitDIC project file here</h5>
+    <div class="note">
+      <ul>
+        <li>Update project file by uploading a new one.</li>
+        <li>Only the latest version will be stored.</li>
+      </ul>
+    </div>
   </mat-card-title>
   <mat-card-content>
-    <div *ngIf="projectid">
+    <div *ngIf="projectid" class="status">
       <div *ngIf="uploaded == true; else elseBlock">
         History version exists.
       </div>
@@ -11,7 +17,7 @@
         No History version is available.
       </ng-template>
     </div>
-    <input type="file" #file (change)="uploadFileOnChange(file.files)" accept="application/x-tar" />
+    <input mat-flat-button color="accent" type="file" #file (change)="uploadFileOnChange(file.files)" accept="application/x-tar" />
   </mat-card-content>
 </mat-card>
 <mat-card>

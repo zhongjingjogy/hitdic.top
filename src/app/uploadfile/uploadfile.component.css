@@ -1,0 +1,12 @@
+.note {
+    color: grey;
+    font-size: 14px;
+}
+
+.note li {
+    list-style: none;
+}
+
+.status {
+    margin-bottom: 20px;
+}

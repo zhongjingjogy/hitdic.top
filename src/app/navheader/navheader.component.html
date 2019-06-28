@@ -4,7 +4,7 @@
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <span *ngIf="userService.user.username; else elseBlock">
+  <span *ngIf="userService.user.username; else elseBlock" [ngStyle.xs]="{'font-size': '10px'}" [ngStyle.sm]="{'font-size': '14px'}">
     {{userService.user.username}}
   </span>
   <span *ngIf="userService.user.username">

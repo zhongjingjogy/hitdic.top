@@ -1,0 +1,121 @@
+
+<div class="container image"
+style="background-color:transparent !important; clear:both; padding-top: 20px !important; padding-bottom: 0px !important;">
+
+<div class="heading-section" fxLayout="column" fxLayoutAlign="center center">
+  <div [class.animated]="isHeading" [class.fadeInLeft]="isHeading">
+    <h1 [ngStyle.xs]="{'font-size': '32px'}" [ngStyle.sm]="{'font-size': '42px'}">HitDIC 2 | Automated</h1>
+  </div>
+  <div [class.animated]="isSubheading" [class.fadeInRight]="isSubheading">
+    <h2 [ngStyle.xs]="{'font-size': '18px'}" [ngStyle.sm]="{'font-size': '22px'}">Powered by Prof. Lijun's Group from
+      Central South University</h2>
+  </div>
+  <div fxLayout="row" [class.animated]="isHeadingBtn" [class.fadeIn]="isHeadingBtn"
+    [class.heading-btn]="isHeadingBtn">
+    <a class="heading-button-left" mat-flat-button color="accent" routerLink="/projects">Get Started</a>
+  </div>
+
+</div>
+<div class="mycontainer">
+  <h3>[ Three Steps to Use Automated HitDIC ]</h3>
+  <div class="items">
+    <div class="stepitem">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Step 1: Create HitDIC project
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicsteps/create-project.png" alt="Photo of create HitDIC project">
+      </mat-card>
+    </div>
+    <div class="stepitem">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Step 2: Upload HitDIC project file
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicsteps/upload-hitdicproject.png"
+          alt="Photo of upload-HitDIC-project">
+      </mat-card>
+    </div>
+    <div class="stepitem">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Step 3: Create HitDIC project task
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicsteps/create-hitdictask.png" alt="Photo of create-HitDIC-project">
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="mycontainer">
+  <h3>[ Viewing HitDIC Report ]</h3>
+  <div class="items">
+    <div class="item">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Overview
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicreports/overview.png" alt="Photo of overview">
+        <mat-card-content>
+          <p>
+            Optimization method / Time consumption / Optimization result / TDB file
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="item">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Covergence Sequence
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicreports/convergensequence.png"
+          alt="Photo of convergence sequence">
+        <mat-card-content>
+          <p>
+            Convergence sequence of the optimization algorithm
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="item">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Composition profiles
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicreports/composition-profiles.png" alt="Photo of overview">
+        <mat-card-content>
+          <p>
+            Model-predicted composition profiles and the experimental data
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="item">
+      <mat-card class="example-card">
+        <div class="my-card-header">
+          <div class="my-card-title">
+            Interdiffusion coefficients
+          </div>
+        </div>
+        <img mat-card-image src="../../assets/hitdicreports/interd-profiles.png" alt="Photo of interd">
+        <mat-card-content>
+          <p>
+            Calculated interdiffusion coefficients along the diffusion distance
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
